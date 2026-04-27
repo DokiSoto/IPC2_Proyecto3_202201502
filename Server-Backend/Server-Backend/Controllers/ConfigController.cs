@@ -13,7 +13,7 @@ namespace Server_Backend.Controllers
         {
             using (var reader = new StreamReader(Request.Body, Encoding.UTF8))
             {
-                var xml = await reader.ReadToEndAsync(); // 🔥 AQUÍ ESTÁ EL CAMBIO
+                var xml = await reader.ReadToEndAsync(); 
 
                 ConfigService service = new ConfigService();
                 var respuesta = service.ProcesarXML(xml);
