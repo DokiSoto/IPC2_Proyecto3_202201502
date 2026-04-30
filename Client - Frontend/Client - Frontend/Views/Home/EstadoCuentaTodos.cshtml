@@ -1,0 +1,18 @@
+﻿<h2>Todos los clientes</h2>
+
+<table border="1">
+    <tr>
+        <th>NIT</th>
+        <th>Nombre</th>
+        <th>Saldo a favor</th>
+    </tr>
+
+    @foreach (var c in ViewBag.Clientes)
+    {
+        <tr>
+            <td>@c.NIT</td>
+            <td>@c.Nombre</td>
+            <td>Q @c.Saldo</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,45 @@
+﻿<h2>Consultar Estado de Cuenta</h2>
+
+<form method="get" asp-action="EstadoCuentaview">
+    <input type="text" name="nit" placeholder="Ingrese NIT" />
+    <button type="submit">Consultar</button>
+</form>
+
+<a href="/Home/EstadoCuentaTodos">
+    <button>Ver todos los clientes</button>
+</a>
+
+@if (ViewBag.Nombre != null)
+{
+    <h3>Cliente: @ViewBag.NIT - @ViewBag.Nombre</h3>
+    <h4>Saldo actual: Q. @ViewBag.Saldo</h4>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>FECHA</th>
+                <th>CARGO</th>
+                <th>ABINO</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in ViewBag.Transacciones)
+            {
+                <tr>
+                    <td>@t.Fecha</td>
+
+                    @if (t.Tipo == "Pago")
+                    {
+                        <td>Q @t.Monto (Banco @t.Banco)</td>
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td></td>
+                        <td>Q @t.Monto (Fact. @t.Numero)</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}

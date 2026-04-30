@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Consultar Ingresos";
+}
+
+<h2>Consultar Ingresos</h2>
+
+<form method="get" asp-action="Ingresos">
+    <input type="text" name="mes" placeholder="MM-YYYY (ej: 04-2024)" />
+    <button type="submit">Consultar</button>
+</form>
+
+<br />
+
+@if (ViewBag.Nombres != null)
+{
+    <h3>Gráfica de Ingresos</h3>
+
+    <canvas id="graficaIngresos" width="600" height="300"></canvas>
+}
+<br />
+@if (ViewBag.Mes != null)
+{
+    <a href="/Home/IngresosPDF?mes=@ViewBag.Mes">
+        <button>Exportar PDF</button>
+    </a>
+}
+
+<br />
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+@if (ViewBag.Nombres != null)
+{
+    <script>
+        var nombres = @Html.Raw(Json.Serialize(ViewBag.Nombres));
+        var valores = @Html.Raw(Json.Serialize(ViewBag.Valores));
+
+        var ctx = document.getElementById('graficaIngresos').getContext('2d');
+
+        new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: nombres,
+        datasets: [{
+        label: 'Ingresos por Banco',
+        data: valores,
+        borderWidth: 1
+        }]
+        },
+        options: {
+        responsive: true,
+        scales: {
+        y: {
+        beginAtZero: true
+        }
+        }
+        }
+        });
+
+       
+    </script>
+   
+}

@@ -1,0 +1,65 @@
+﻿<h2>Estado de Cuenta</h2>
+
+@if (ViewBag.NIT != null)
+{
+    <h3>Cliente: @ViewBag.NIT - @ViewBag.Nombre</h3>
+    <h4>Saldo actual: Q. @ViewBag.Saldo</h4>
+}
+else
+{
+    <h3>No se encontró información del cliente</h3>
+}
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>FECHA</th>
+            <th>CARGO</th>
+            <th>ABONO</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.Transacciones != null)
+        {
+            foreach (var t in ViewBag.Transacciones)
+            {
+                <tr>
+                    <td>@t.Fecha</td>
+
+                    @if (t.Tipo == "Pago")
+                    {
+                        <td>Q @t.Monto (Banco @t.Banco)</td>
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td></td>
+                        <td>Q @t.Monto (Fact. @t.Numero)</td>
+                    }
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">No hay transacciones</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+@if (ViewBag.NIT != null)
+{
+    <a href="@Url.Action("EstadoCuentaPDF", "Home", new { nit = ViewBag.NIT })">
+        <button>Exportar a PDF</button>
+    </a>
+}
+
+<br />
+<br />
+
+<a href="/Home/EstadoCuenta">
+    <button>Volver</button>
+</a>

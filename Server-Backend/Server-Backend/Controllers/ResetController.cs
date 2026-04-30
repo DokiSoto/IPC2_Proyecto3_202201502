@@ -13,6 +13,8 @@ namespace Server_Backend.Controllers
             {
                 DataStore.Clientes.Clear();
                 DataStore.Bancos.Clear();
+                DataStore.Facturas.Clear();
+            DataStore.Pagos.Clear();
 
                 string rutaClientes = "Data/clientes.xml";
                 string rutaBancos = "Data/bancos.xml";

@@ -1,8 +1,68 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<h1>Proyecto 3 IPC2</h1>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<hr />
+
+<h2>Reset</h2>
+<form method="post" action="/Home/Reset">
+	<button type="submit"> ELIMINAR TODO</button>
+</form>
+
+<hr />
+
+<h2>Cargar Config</h2>
+
+<form method="post" action="/Home/CargarConfig">
+    <input type="file" id="fileConfig" accept=".xml" />
+    <br /><br />
+
+    <textarea name="xml" id="xmlConfig" rows="10" cols="60"></textarea>
+    <br />
+
+    <button type="submit">Enviar Config</button>
+</form>
+
+<hr />
+
+<h2>Cargar Transacciones</h2>
+
+<form method="post" action="/Home/CargarTransac">
+    <input type="file" id="fileTransac" accept=".xml" />
+    <br /><br />
+
+    <textarea name="xml" id="xmlTransac" rows="10" cols="60"></textarea>
+    <br />
+
+    <button type="submit">Enviar Transacciones</button>
+</form>
+
+<hr />
+
+
+<h2>Peticiones</h2>
+
+<a href="/Home/Peticiones">
+    <button>Ir a Peticiones</button>
+</a>
+
+@if (ViewBag.Respuesta != null)
+{
+    <h3>Respuesta:</h3>
+    <pre>@ViewBag.Respuesta</pre>
+}
+<script>
+    document.getElementById("fileConfig").addEventListener("change", function () {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById("xmlConfig").value = e.target.result;
+        };
+        reader.readAsText(this.files[0]);
+    });
+
+    document.getElementById("fileTransac").addEventListener("change", function () {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById("xmlTransac").value = e.target.result;
+        };
+        reader.readAsText(this.files[0]);
+    });
+</script>

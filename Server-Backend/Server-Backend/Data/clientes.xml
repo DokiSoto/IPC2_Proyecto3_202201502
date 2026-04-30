@@ -1,0 +1,10 @@
+<clientes>
+  <cliente>
+    <NIT>123</NIT>
+    <nombre>Juan Perez</nombre>
+  </cliente>
+  <cliente>
+    <NIT>456</NIT>
+    <nombre>Maria Lopez</nombre>
+  </cliente>
+</clientes>

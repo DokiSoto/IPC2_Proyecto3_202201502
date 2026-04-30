@@ -1,0 +1,10 @@
+<bancos>
+  <banco>
+    <codigo>1</codigo>
+    <nombre>Banco Industrial</nombre>
+  </banco>
+  <banco>
+    <codigo>2</codigo>
+    <nombre>Banrural</nombre>
+  </banco>
+</bancos>
